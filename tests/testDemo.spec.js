@@ -15,7 +15,7 @@ test.beforeEach('Login', async ({ page }) => {
   await expect(page.locator('text=Main web application development').nth(0)).toBeVisible();
 });
 
-test.slow('TC1: Verify "Implement user authentication" task with Feature and High Priority tags in To Do', async ({ page }) => {
+test('TC1: Verify "Implement user authentication" task with Feature and High Priority tags in To Do', async ({ page }) => {
   await page.locator('button:has-text("Web Application")').click();
   await page.waitForSelector(SELECTORS.todoColumn);
 
