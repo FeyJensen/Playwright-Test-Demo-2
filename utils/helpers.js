@@ -1,6 +1,8 @@
 import { SELECTORS } from './selectors.js';
 
-// Helper function to get column selector based on column name
+// Helper functions!
+
+//Gets column selector based on column name
 export const getColumnSelector = (columnName) => {
   const columnMap = {
     'To Do': SELECTORS.todoColumn,
@@ -10,7 +12,7 @@ export const getColumnSelector = (columnName) => {
   return columnMap[columnName];
 };
 
-// Helper function to get tag selector based on tag name
+// Gets tag selector based on tag name
 export const getTagSelector = (tagName) => {
   const tagMap = {
     'Feature': SELECTORS.featureTag,
@@ -21,6 +23,6 @@ export const getTagSelector = (tagName) => {
   return tagMap[tagName];
 };
 
-// Helper function to get task card locator
+// Gets task card locator based on task title within a column
 export const getTaskCard = (column, title) =>
   column.locator(`div.bg-white.p-4.rounded-lg.shadow-sm.border.border-gray-200:has-text("${title}")`);

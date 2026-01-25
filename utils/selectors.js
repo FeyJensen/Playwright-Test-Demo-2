@@ -8,3 +8,4 @@ export const SELECTORS = {
   designTag: 'span.px-2.py-1.rounded-full.text-xs.font-medium.bg-purple-100.text-purple-800'
 };
 
+// I'd recommend clients use more specific selectors like id and classes for better maintainability.

@@ -3,7 +3,7 @@ import { credentials } from '../config/credentials.js';
 import { testData } from '../config/testData.js';
 import { getColumnSelector, getTagSelector, getTaskCard } from '../utils/helpers.js';
 
-test.beforeEach('Login', async ({ page }) => {
+test.beforeEach('Login and confirm login', async ({ page }) => {
   await page.goto(credentials.appUrl);
   await page.fill('#username', credentials.username);
   await page.fill('#password', credentials.password);
@@ -16,7 +16,7 @@ test.beforeEach('Login', async ({ page }) => {
 
 testData.forEach((data) => {
   test(`${data.testId}: Verify "${data.task}" task with ${data.tags.join(' and ')} tag(s) in ${data.column}`, async ({ page }) => {
-    // Navigate to project
+    // Navigate to projects
     await page.locator(`button:has-text("${data.project}")`).click();
     
     // Get the appropriate column
@@ -28,7 +28,7 @@ testData.forEach((data) => {
     const taskCard = getTaskCard(column, data.task);
     await expect(taskCard).toBeVisible();
     
-    // Verify all tags dynamically
+    // Verify tags exist on the task
     for (const tag of data.tags) {
       const tagSelector = getTagSelector(tag);
       await expect(taskCard.locator(tagSelector)).toBeVisible();
