@@ -6,6 +6,7 @@ import { getColumnSelector, getTagSelector, getTaskCard } from '../utils/helpers
 test.beforeEach('Login and confirm login', async ({ page }) => {
   await page.goto(credentials.appUrl);
   await page.fill('#username', credentials.username);
+  await page.locator('button[type="submit"]').click();
   await page.fill('#password', credentials.password);
   await page.click('button[type="submit"]');
 
@@ -20,9 +21,9 @@ testData.forEach((data) => {
     await page.locator(`button:has-text("${data.project}")`).click();
     
     // Get the appropriate column
-    const columnSelector = getColumnSelector(data.column);
+    const columnSelector = getColumnSelector(data.column); //gets the selector as a string
     await page.waitForSelector(columnSelector);
-    const column = page.locator(columnSelector);
+    const column = page.locator(columnSelector); //makes sure it's visible
     
     // Verify task exists in column
     const taskCard = getTaskCard(column, data.task);

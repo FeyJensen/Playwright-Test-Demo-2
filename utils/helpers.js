@@ -1,27 +1,16 @@
-import { SELECTORS } from './selectors.js';
-
 // Helper functions!
 
 //Gets column selector based on column name
 export const getColumnSelector = (columnName) => {
-  const columnMap = {
-    'To Do': SELECTORS.todoColumn,
-    'In Progress': SELECTORS.inProgressColumn,
-    'Done': SELECTORS.doneColumn
-  };
-  return columnMap[columnName];
+  return `.flex-col.p-4:has-text("${columnName}")`; 
 };
 
 // Gets tag selector based on tag name
 export const getTagSelector = (tagName) => {
-  const tagMap = {
-    'Feature': SELECTORS.featureTag,
-    'High Priority': SELECTORS.highPriorityTag,
-    'Bug': SELECTORS.bugTag,
-    'Design': SELECTORS.designTag
-  };
-  return tagMap[tagName];
+  return  `span.px-2.py-1.rounded-full.text-xs.font-medium:has-text("${tagName}")`; //changed so you wouldn't have to updated the map when new tags are added
 };
+
+
 
 // Gets task card locator based on task title within a column
 export const getTaskCard = (column, title) =>
